@@ -41,17 +41,19 @@ class BasicLayout extends Component {
                 </Sider>
                 <Layout>
                     <Header style={{background: '#fff', padding: 0}}>
+
                         <Icon
                             className="trigger"
                             type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                             onClick={this.toggle}
                         />
-                    </Header>
-                    <Content style={{margin: '0 16px'}}>
                         <Breadcrumb style={{margin: '16px 0'}}>
                             <Breadcrumb.Item>User</Breadcrumb.Item>
                             <Breadcrumb.Item>Bill</Breadcrumb.Item>
                         </Breadcrumb>
+                    </Header>
+                    <Content style={{margin: '0 16px'}}>
+
                         <Switch key="home">
                             <LayoutRoutes name="home"/>
                         </Switch>

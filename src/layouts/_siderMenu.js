@@ -15,24 +15,24 @@ const {SubMenu} = Menu;
  *@return {*}
  */
 const generateChildrenMenu = (routeArr) => {
-
-    return routeArr.map((route) => {
-
+    const routes = [];
+    routeArr.forEach((route) => {
         if (route.hasOwnProperty('children')) {
-            return (
+            routes.push((
                 <SubMenu key={route.name}
                          title={<span><Icon type={route.icon}/><span>{route.name}</span></span>}>
                     {generateChildrenMenu(route.children)}
-                </SubMenu>);
+                </SubMenu>));
 
         } else {
 
             if (!route.hasOwnProperty('redirect')) {
-                return generateMenu(route)
+                routes.push(generateMenu(route));
             }
         }
 
     });
+    return routes;
 };
 
 
