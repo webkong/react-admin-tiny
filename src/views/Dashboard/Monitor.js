@@ -3,7 +3,7 @@
 */
 
 import React, {Component} from 'react';
-
+import ViewLayout from "../../layouts/_viewLayout";
 class Monitor extends Component {
     constructor(props) {
         super(props);
@@ -12,9 +12,12 @@ class Monitor extends Component {
 
     render() {
         return (
-            <div>
-                'Monitor'
-            </div>
+            <ViewLayout>
+                <div>
+                    'Monitor'
+                </div>
+            </ViewLayout>
+
         )
     }
 

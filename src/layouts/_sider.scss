@@ -1,0 +1,28 @@
+.logo {
+  width: 100%;
+  height: 64px;
+  display: inline-block;
+  line-height: 64px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  img {
+    padding-right: 8px;
+  }
+}
+
+.ant-layout-sider-dark {
+  .logo {
+    background: #002140;
+  }
+  a {
+    color: #fff;
+  }
+}
+
+.ant-layout-sider-light {
+  .logo {
+    background: rgba(239, 239, 239, 0.5);
+  }
+
+}

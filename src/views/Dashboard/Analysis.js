@@ -3,6 +3,7 @@
 */
 
 import React, {Component} from 'react';
+import ViewLayout from "../../layouts/_viewLayout";
 
 class Analysis extends Component {
     constructor(props) {
@@ -12,9 +13,12 @@ class Analysis extends Component {
 
     render() {
         return (
-            <div>
-                Analysis
-            </div>
+            <ViewLayout>
+                <div>
+                    Analysis
+                </div>
+            </ViewLayout>
+
         )
     }
 

@@ -3,14 +3,18 @@
 */
 
 import React, {Component} from 'react';
-import {Layout, Breadcrumb, Icon} from 'antd';
-
-import SiderMenu from './_siderMenu';
+import {Layout} from 'antd';
 import {Switch} from 'react-router-dom';
 import {LayoutRoutes} from '../routes/router';
+import {connect} from 'react-redux';
+import {addRouteList} from "../store/actions/route";
+import SiderMenu from './_siderMenu';
+
+import HeaderLayout from './_headerLayout';
 import theme from '../config/theme'
 
-const {Header, Footer, Sider, Content} = Layout;
+
+const {Footer, Sider, Content} = Layout;
 
 
 class BasicLayout extends Component {
@@ -27,11 +31,22 @@ class BasicLayout extends Component {
         });
     };
 
+    componentDidMount() {
+        this.props.addRouteList();
+        console.log(1)
+    }
 
     render() {
         return (
             <Layout style={{minHeight: '100vh'}}>
                 <Sider
+                    onBreakpoint={(point) => {
+                        if (point) {
+                            this.toggle()
+                        }
+                    }}
+                    breakpoint="lg"
+                    width={250}
                     theme={theme.side.theme}
                     collapsible
                     trigger={null}
@@ -40,22 +55,12 @@ class BasicLayout extends Component {
                     <SiderMenu theme={theme.side.theme} iscollapsed={`${this.state.collapsed}`}/>
                 </Sider>
                 <Layout>
-                    <Header style={{background: '#fff', padding: 0}}>
+                    <HeaderLayout toggle={this.toggle} collapsed={this.state.collapsed}/>
 
-                        <Icon
-                            className="trigger"
-                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                            onClick={this.toggle}
-                        />
-                        <Breadcrumb style={{margin: '16px 0'}}>
-                            <Breadcrumb.Item>User</Breadcrumb.Item>
-                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                        </Breadcrumb>
-                    </Header>
-                    <Content style={{margin: '0 16px'}}>
+                    <Content>
 
                         <Switch key="home">
-                            <LayoutRoutes name="home"/>
+                            <LayoutRoutes name="home"  {...this.props}/>
                         </Switch>
                     </Content>
                     <Footer style={{textAlign: 'center'}}>
@@ -69,4 +74,6 @@ class BasicLayout extends Component {
 
 }
 
-export default BasicLayout;
+
+
+export default connect(null, {addRouteList})(BasicLayout);

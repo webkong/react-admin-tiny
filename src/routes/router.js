@@ -3,7 +3,7 @@ import {Route, Redirect} from 'react-router-dom';
 import routeConf from './config';
 
 
-let AppRoute, AppRouteArr = [], ChildrenRoutes = {};
+let  AppRouteArr = [], ChildrenRoutes = {};
 
 
 /**
@@ -70,7 +70,6 @@ const generateRoutes = (routeConf) => {
 
 if (routeConf && routeConf.length > 0) {
     generateRoutes(routeConf);
-    AppRoute = AppRouteArr;
 }
 
 
@@ -79,7 +78,7 @@ class AppRoutes extends Component {
     render() {
         return (
             <>
-                {AppRoute}
+                {AppRouteArr}
             </>
         );
     }

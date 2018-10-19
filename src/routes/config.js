@@ -21,15 +21,15 @@ export default [
     // app
     {
         path: '/',
-        logo: 'dashboard',
-        name: 'React-Admin-Tiny',
+        logo: 'https://zos.alipayobjects.com/rmsportal/HXZvKsbcQljpFToWbjPj.svg',
+        name: 'React Admin Tiny',
         component: Loadable({
-            loader: () => import('../layouts/layout'),
+            loader: () => import('../layouts/pageLayout'),
             loading: Loading
         }),
         children: [
             // dashboard
-            {path: '/', redirect: '/dashboard/analysis'},
+            {path: '/', name: 'home', redirect: '/dashboard/analysis'},
             {
                 path: '/dashboard',
                 redirect: '/dashboard/analysis',
@@ -57,7 +57,7 @@ export default [
                 ]
             },
             {
-                path: '/test',
+                path: '/test/:id',
                 name: 'test',
                 icon: 'dashboard',
                 component: Loadable({

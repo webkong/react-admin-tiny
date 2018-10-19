@@ -1,14 +1,10 @@
 /*
-* Create by wangsw on 2018/10/15
+* Create by wangsw on 2018/10/19
 */
 
 import React, {Component} from 'react';
 
-
-
-
-
-class User extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -17,7 +13,7 @@ class User extends Component {
     render() {
         return (
             <div>
-                login
+                'home'
             </div>
         )
     }
@@ -25,4 +21,4 @@ class User extends Component {
 
 }
 
-export default User;
+export default Home;

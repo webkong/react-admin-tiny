@@ -4,9 +4,10 @@
 
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import routeConf from '../routes/config';
 import {Icon, Menu} from "antd";
+import routeConf from '../routes/config';
 
+import './_sider.scss';
 const {SubMenu} = Menu;
 
 /**
