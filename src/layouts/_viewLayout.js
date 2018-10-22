@@ -6,20 +6,32 @@ import React, {Component} from 'react';
 import BreadcrumbLayout from "./_breadcrumbLayout";
 import connect from "react-redux/es/connect/connect";
 import {getRouteList} from "../store/getters";
-const hash = window.location.hash;
+import {urlToList} from '../utils/tools'
 
 
 class ViewLayout extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            routeArr: this.props.routeArr
+        };
     }
 
+    matchBreadcrumb = (url, routeArr = []) => {
+        const routes = urlToList(url.slice(1)).map((elem) => {
+            return routeArr[elem]
+        });
+        return [{path: '/home', name: 'home', icon: 'home', redirect: false}, ...routes];
+
+    };
+
     render() {
-        console.log(this.props)
+        const hash = window.location.hash;
+
         return (
             <>
-                <BreadcrumbLayout hash={hash} {...this.props}/>
+                <BreadcrumbLayout hasIcon={false} hash={hash}
+                                  bList={this.matchBreadcrumb(hash, this.state.routeArr)} {...this.props}/>
                 <div style={{padding: '0 30px'}}>
                     {this.props.children}
                 </div>
@@ -27,6 +39,7 @@ class ViewLayout extends Component {
         )
     }
 }
+
 const mapStateToProps = state => {
     let routeArr = getRouteList(state);
     return {routeArr};

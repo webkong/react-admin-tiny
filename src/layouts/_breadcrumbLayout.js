@@ -3,31 +3,33 @@
 */
 
 import React, {Component} from 'react';
-import {Breadcrumb} from "antd";
+import {Breadcrumb, Icon} from "antd";
+import {Link} from 'react-router-dom';
 import './_header.scss';
-
-
 
 
 class BreadcrumbLayout extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            hasIcon: this.props.hasIcon
+        };
     }
 
     render() {
-        console.log(this.props)
+        const {bList} = this.props;
+        const itemRender = (route, params, routes) => {
+            const last = routes.indexOf(route) === routes.length - 1;
+            return last ? <span>{route.name}</span> : <Link to={route.path}>{this.state.hasIcon ?
+                <Icon type={route.icon} style={{paddingRight: '3px'}}/> : ''}{route.name}</Link>;
+        };
         return (
-            <Breadcrumb className={'breadLayout'}>
-                <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
+            <Breadcrumb className={'breadLayout'} itemRender={itemRender} routes={bList}/>
 
         )
     }
 
 }
-
 
 
 export default BreadcrumbLayout;
